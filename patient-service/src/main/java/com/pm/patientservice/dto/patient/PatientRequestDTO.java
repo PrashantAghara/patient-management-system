@@ -1,4 +1,4 @@
-package com.pm.patientservice.dto;
+package com.pm.patientservice.dto.patient;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

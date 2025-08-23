@@ -1,4 +1,4 @@
-package com.pm.patientservice.dto;
+package com.pm.patientservice.dto.patient;
 
 public record PatientResponseDTO(String id, String name, String email, String address, String dateOfBirth) {
     @Override
