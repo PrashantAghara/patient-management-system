@@ -1,7 +1,6 @@
 package com.pm.patientservice.dto;
 
-public record PatientResponseDTO(String id, String name, String email, String address, String dateOfBirth,
-                                 String registeredDate) {
+public record PatientResponseDTO(String id, String name, String email, String address, String dateOfBirth) {
     @Override
     public String id() {
         return id;
@@ -25,10 +24,5 @@ public record PatientResponseDTO(String id, String name, String email, String ad
     @Override
     public String dateOfBirth() {
         return dateOfBirth;
-    }
-
-    @Override
-    public String registeredDate() {
-        return registeredDate;
     }
 }
