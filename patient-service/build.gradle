@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.5'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "com.google.protobuf" version "0.9.4"
 }
 
 group = 'com.pm'
@@ -28,7 +29,55 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	runtimeOnly("com.h2database:h2:2.2.224")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.10")
+
+	implementation "io.grpc:grpc-netty-shaded:1.69.0"
+	implementation "io.grpc:grpc-protobuf:1.69.0"
+	implementation "io.grpc:grpc-stub:1.69.0"
+	compileOnly "org.apache.tomcat:annotations-api:6.0.53"
+	implementation "net.devh:grpc-spring-boot-starter:3.1.0.RELEASE"
+	implementation "com.google.protobuf:protobuf-java:4.29.1"
 }
+
+tasks.named("processResources") {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named("compileJava") {
+	dependsOn("generateProto")
+}
+
+protobuf {
+	protoc {
+		artifact = "com.google.protobuf:protoc:3.25.5"
+	}
+	plugins {
+		grpc {
+			artifact = "io.grpc:protoc-gen-grpc-java:1.68.1"
+		}
+	}
+	generateProtoTasks {
+		all().configureEach { task ->
+			task.builtins {
+				java {} // generates standard protobuf classes
+			}
+			task.plugins {
+				grpc {} // generates gRPC service stubs
+			}
+		}
+	}
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs += [
+					"$buildDir/generated/source/proto/main/java",
+					"$buildDir/generated/source/proto/main/grpc"
+			]
+		}
+	}
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()
