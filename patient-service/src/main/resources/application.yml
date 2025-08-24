@@ -20,13 +20,6 @@ spring:
 server:
   port: 4000
 
-#  "SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/db",
-#  "SPRING_DATASOURCE_USERNAME=admin",
-#  "SPRING_DATASOURCE_PASSWORD=password",
-#  "SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver",
-#  "SPRING_JPA_HIBERNATE_DDL_AUTO=update",
-#  "SPRING_SQL_INIT_MODE=always",
-
-#  docker run --rm --name patient-service -p 4000:4000 -e SPRING_DATASOURCE_URL="jdbc:postgresql://patient-service-db:5432/db" -e SPRING_DATASOURCE_USERNAME="admin" -e SPRING_DATASOURCE_PASSWORD="password" -e SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.postgresql.Driver" -e SPRING_JPA_HIBERNATE_DDL_AUTO="update" -e SPRING_SQL_INIT_MODE="always" --network internal patient-service:latest
-
-
+logging:
+  level:
+    root: info
