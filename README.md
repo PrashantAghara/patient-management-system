@@ -29,5 +29,5 @@ docker run --name patient-service-db -p 5432:5432 -e POSTGRES_DB="db" -e POSTGRE
  docker build -t billing-service:latest . 
 ```
 ```shell
- docker run --name patient-service -p 4001:4001 -p 9001:9001 --network internal billing-service:latest
+ docker run --name billing-service -p 4001:4001 -p 9001:9001 --network internal billing-service:latest
 ```
